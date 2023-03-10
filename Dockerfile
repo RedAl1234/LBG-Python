@@ -19,5 +19,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 ENV PORT 8081
 
-EXPOSE $(PORT)
+EXPOSE ${PORT}
 CMD [ "python", "./lbg.py" ]
