@@ -14,10 +14,10 @@ RUN apt-get install -y git
 
 WORKDIR /LBG-Python
 
-COPY requirements.txt ./
+COPY . .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . .
+ENV PORT 8081
 
-EXPOSE 8080
+EXPOSE $(PORT)
 CMD [ "python", "./lbg.py" ]
