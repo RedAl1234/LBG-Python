@@ -17,7 +17,7 @@ WORKDIR /LBG-Python
 COPY . .
 RUN pip install --no-cache-dir -r requirements.txt
 
-ENV PORT 8081
+ENV PORT 8080
 
 EXPOSE ${PORT}
 CMD [ "python", "./lbg.py" ]
