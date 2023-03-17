@@ -33,10 +33,18 @@ pipeline {
       }
     }
 
+    stage('Deploy Kuberctl') {
+      steps {
+        sh 'kubectl apply -f globbers.yml'
+        sh 'kubectl get pods'
+        sh 'kubectl get services'
+      }
+    }
+
     stage('Congratulations Globbers, much success') {
-        steps {
-         echo "ThemBaba??? more like WhoBaba"
-         echo "Jon Street Boys??? more like NoSYNC"
+      steps {
+        echo "ThemBaba??? more like WhoBaba"
+        echo "Jon Street Boys??? more like NoSYNC"
       }
     }
   }
