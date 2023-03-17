@@ -5,7 +5,7 @@ pipeline {
     PROJECT_ID = 'lbg-cohort-10'
     IMAGE_NAME = 'globbers'
     TAG = '1'
-    GOOGLE_APPLICATION_CREDENTIALS = credentials('lbg-cohort-10')
+    GOOGLE_APPLICATION_CREDENTIALS = credentials('json_secret_file')
   }
   
   stages {
