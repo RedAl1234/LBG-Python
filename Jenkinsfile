@@ -37,7 +37,7 @@ pipeline {
       steps {
         withCredentials([file(credentialsId: 'json_secret_file', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
 
-        sh 'kubectl apply -f globbers.yml --token $GOOGLE_APPLICATION_CREDENTIALS --server https://kubernetes.default'
+        sh 'kubectl apply -f globbers.yml --token $GOOGLE_APPLICATION_CREDENTIALS --server https://34.77.246.144''
         sh 'kubectl get pods'
         sh 'kubectl get services'
       }
