@@ -33,6 +33,11 @@ pipeline {
       }
     }
 
+    stage('Apply Kubernetes files') {
+        withKubeConfig([credentialsId: 'admin', serverUrl: 'http://34.29.140.19:8080']) {
+      sh 'kubectl apply -f my-kubernetes-directory'
+    }
+
     stage('Deploy Kuberctl') {
       steps {
         sh 'kubectl apply -f globbers.yml'
@@ -40,6 +45,7 @@ pipeline {
         sh 'kubectl get services'
       }
     }
+  
 
     stage('Congratulations Globbers, much success') {
       steps {
