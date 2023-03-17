@@ -71,5 +71,4 @@ pipeline {
         echo "Jon Street Boys??? more like NoSYNC"
       }
     }
-  }
 }
