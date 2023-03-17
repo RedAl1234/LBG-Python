@@ -27,6 +27,7 @@ pipeline {
 
 	  sh 'gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS}'
           sh 'gcloud auth configure-docker'
+	  sh "docker login -u _json_key -p '$(cat $GOOGLE_APPLICATION_CREDENTIALS)' https://gcr.io"
           sh "docker push gcr.io/${PROJECT_ID}/${IMAGE_NAME}:${TAG}"
         }
       }
