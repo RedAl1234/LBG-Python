@@ -24,13 +24,15 @@ pipeline {
     stage('Push Docker image to GCR') {
       steps {
         withCredentials([file(credentialsId: 'gcr-auth', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
-
+		
+	  sh 'echo "$GOOGLE_APPLICATION_CREDENTIALS" > abc.json'
+	  sh 'docker login -u _json_key -p "$(cat abc.json)" https://gcr.io'
 	  sh 'gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS}'
           sh 'gcloud auth configure-docker'
-	  sh "docker login -u _json_key -p '$(cat $GOOGLE_APPLICATION_CREDENTIALS)' https://gcr.io"
           sh "docker push gcr.io/${PROJECT_ID}/${IMAGE_NAME}:${TAG}"
         }
       }
     }
   }
+}
 }
