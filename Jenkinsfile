@@ -35,14 +35,12 @@ pipeline {
 
     stage('Deploy Kuberctl') {
       steps {
-        sh 'gke-gcloud-auth-plugin'
-        sh 'gcloud components install gke-gcloud-auth-plugin'
-        sh 'apt-get install google-cloud-sdk-gke-gcloud-auth-plugin'
-        sh 'gke-gcloud-auth-plugin'
-        sh 'gcloud container clusters get-credentials globbers-gke-cluster  --region=europe-west1'
-        sh 'kubectl apply -f globbers.yml'
+        withCredentials([file(credentialsId: 'json_secret_file', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
+
+        sh 'kubectl apply -f globbers.yml --token "$GOOGLE_APPLICATION_CREDENTIALS"'
         sh 'kubectl get pods'
         sh 'kubectl get services'
+      }
       }
     }
   
